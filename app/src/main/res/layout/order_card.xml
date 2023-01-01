@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:background="@drawable/featured_restaurant_card_bg"
+        android:paddingBottom="12dp">
+
+
+        <TextView
+            android:id="@+id/tv_rest_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:paddingTop="6dp"
+            android:text="12:00 (Noon)"
+            android:textColor="@color/ChineseBlack_300"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/tv_rest_name2"
+            app:layout_constraintTop_toTopOf="@+id/imageView7"
+            tools:ignore="TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/tv_delivery_fees"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/poppins"
+            android:paddingTop="6dp"
+            android:text="EGP 20.00"
+            android:textColor="@color/wagba_main"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/circle_img"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toBottomOf="@+id/tv_rest_name" />
+
+        <TextView
+            android:id="@+id/tv_delivery_fees2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:fontFamily="@font/poppins"
+            android:paddingTop="6dp"
+            android:text="Gate 3"
+            android:textColor="@color/ChineseBlack_500"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageView7"
+            app:layout_constraintTop_toTopOf="@+id/imageView7" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/circle_img"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="12dp"
+            android:elevation="12dp"
+            android:padding="20dp"
+            app:cardCornerRadius="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/restaurant_logo"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:contentDescription="@string/category_icon_desc"
+                android:elevation="20dp"
+                android:scaleType="centerCrop"
+                tools:ignore="ImageContrastCheck" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_rest_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:paddingTop="6dp"
+            android:text="Steven Sameh"
+            android:textColor="@color/ChineseBlack"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_delivery_fees"
+            app:layout_constraintStart_toEndOf="@+id/circle_img"
+            app:layout_constraintTop_toTopOf="@+id/circle_img"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tv_rest_name3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:paddingTop="6dp"
+            android:text="Order Date:"
+            android:textColor="@color/ChineseBlack"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/circle_img" />
+
+        <TextView
+            android:id="@+id/tv_rest_name6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:paddingTop="6dp"
+            android:text="Order ID:"
+            android:textColor="@color/ChineseBlack"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_rest_name3"
+            app:layout_constraintStart_toStartOf="@+id/tv_rest_name3"
+            app:layout_constraintTop_toBottomOf="@+id/tv_rest_name3" />
+
+        <TextView
+            android:id="@+id/tv_rest_name9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:paddingTop="6dp"
+            android:text="Order Info:"
+            android:textColor="@color/ChineseBlack"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_rest_name3"
+            app:layout_constraintHorizontal_bias="0.478"
+            app:layout_constraintStart_toStartOf="@+id/tv_rest_name3"
+            app:layout_constraintTop_toBottomOf="@+id/tv_rest_name6" />
+
+        <TextView
+            android:id="@+id/tv_rest_name4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:paddingTop="6dp"
+            android:text="Dec 12, 2022 (09:56:43)"
+            android:textColor="@color/ChineseBlack"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_rest_name3"
+            app:layout_constraintTop_toTopOf="@+id/tv_rest_name3" />
+
+        <TextView
+            android:id="@+id/tv_rest_name7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:paddingTop="6dp"
+            android:text="#166883123"
+            android:textColor="@color/ChineseBlack"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_rest_name4"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="@+id/tv_rest_name4"
+            app:layout_constraintTop_toTopOf="@+id/tv_rest_name6" />
+
+        <TextView
+            android:id="@+id/tv_rest_name10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:fontFamily="@font/poppins"
+            android:paddingTop="6dp"
+            android:text="Please Call Me when you arrive so that I can know where are your!"
+            android:textColor="@color/ChineseBlack"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.727"
+            app:layout_constraintStart_toEndOf="@+id/tv_rest_name9"
+            app:layout_constraintTop_toTopOf="@+id/tv_rest_name9" />
+
+        <TextView
+            android:id="@+id/tv_rest_name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:paddingTop="6dp"
+            android:text="01280445538"
+            android:textColor="@color/ChineseBlack"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_rest_name" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:layout_marginTop="6dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="@+id/tv_rest_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_rest_name"
+            app:srcCompat="@drawable/ic_delivery"
+            tools:ignore="ImageContrastCheck" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:adjustViewBounds="true"
+            android:paddingTop="4dp"
+            android:paddingRight="3dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toStartOf="@+id/tv_rest_duration"
+            app:layout_constraintTop_toTopOf="@+id/tv_delivery_fees"
+            app:srcCompat="@drawable/ic_clock"
+            tools:ignore="ImageContrastCheck" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toStartOf="@+id/tv_delivery_fees2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/tv_delivery_fees"
+            app:layout_constraintTop_toTopOf="@+id/tv_delivery_fees"
+            app:srcCompat="@drawable/ic_gate"
+            tools:ignore="ImageContrastCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
