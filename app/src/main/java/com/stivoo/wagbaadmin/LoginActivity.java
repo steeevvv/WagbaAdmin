@@ -39,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         go_to_homepage_intent = new Intent(this, MainActivity.class);
-
         binding.btnLoginLogin.setOnClickListener(v -> {
             String mail = binding.etSigninMail.getText().toString();
             String pw = binding.etSigninPw.getText().toString();
