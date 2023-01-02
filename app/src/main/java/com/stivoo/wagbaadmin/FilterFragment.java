@@ -87,7 +87,6 @@ public class FilterFragment extends Fragment implements RecyclerViewInterface {
                         }
                         Collections.reverse(orders);
                         adapter.setList(orders);
-                        Log.d("testinggg", orders.toString());
                     }
                 }
             }

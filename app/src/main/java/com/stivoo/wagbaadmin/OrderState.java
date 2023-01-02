@@ -78,7 +78,6 @@ public class OrderState extends Fragment {
         total = view.findViewById(R.id.o_total_val);
         radioGroup = view.findViewById(R.id.order_state_radio);
 
-        Log.d("XOXO", String.valueOf(order.getOrderData().getStatusCooking().equals("--:--")));
         if(!order.getOrderData().getStatusProcess().equals("--:--") && order
                 .getOrderData().getStatusConfirm().equals("--:--") & order.getOrderData().getStatusCooking().equals("--:--")&& order.getOrderData().getStatusDelivery().equals("--:--")){
             radioGroup.check(R.id.state_placed);
@@ -129,7 +128,7 @@ public class OrderState extends Fragment {
                                         if (dataSnapshot.exists()) {
                                             Date idd = Calendar.getInstance().getTime();
                                             ORDER_REF.child("statusCooking").setValue("--:--");
-                                            ORDER_REF.child("statusConfirm").setValue(idd.getHours() + ":" + idd.getMinutes());
+                                            ORDER_REF.child("statusConfirm").setValue(String.format("%02d", idd.getHours()) + ":"+ String.format("%02d", idd.getMinutes()));
                                             ORDER_REF.child("statusDelivery").setValue("--:--");
                                             view.findViewById(R.id.state_placed).setEnabled(false);
                                         }
@@ -148,7 +147,7 @@ public class OrderState extends Fragment {
                                             if (dataSnapshot.exists()) {
                                                 Date idd = Calendar.getInstance().getTime();
                                                 ORDER_REF.child("statusCooking").setValue("--:--");
-                                                ORDER_REF.child("statusConfirm").setValue(idd.getHours() + ":" + idd.getMinutes());
+                                                ORDER_REF.child("statusConfirm").setValue(String.format("%02d", idd.getHours()) + ":"+ String.format("%02d", idd.getMinutes()));
                                                 ORDER_REF.child("statusDelivery").setValue("--:--");
                                                 view.findViewById(R.id.state_placed).setEnabled(false);
                                             }
@@ -176,7 +175,7 @@ public class OrderState extends Fragment {
                                         if (dataSnapshot.exists()) {
                                             Date idd = Calendar.getInstance().getTime();
                                             ORDER_REF.child("statusCooking").setValue("--:--");
-                                            ORDER_REF.child("statusConfirm").setValue(idd.getHours() + ":" + idd.getMinutes());
+                                            ORDER_REF.child("statusConfirm").setValue(String.format("%02d", idd.getHours()) + ":"+ String.format("%02d", idd.getMinutes()));
                                             ORDER_REF.child("statusDelivery").setValue("--:--");
                                             view.findViewById(R.id.state_placed).setEnabled(false);
                                         }
@@ -195,7 +194,7 @@ public class OrderState extends Fragment {
                                             if (dataSnapshot.exists()) {
                                                 Date idd = Calendar.getInstance().getTime();
                                                 ORDER_REF.child("statusCooking").setValue("--:--");
-                                                ORDER_REF.child("statusConfirm").setValue(idd.getHours() + ":" + idd.getMinutes());
+                                                ORDER_REF.child("statusConfirm").setValue(String.format("%02d", idd.getHours()) + ":"+ String.format("%02d", idd.getMinutes()));
                                                 ORDER_REF.child("statusDelivery").setValue("--:--");
                                                 view.findViewById(R.id.state_placed).setEnabled(false);
                                             }
@@ -223,7 +222,7 @@ public class OrderState extends Fragment {
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.exists()) {
                                         Date idd = Calendar.getInstance().getTime();
-                                        ORDER_REF.child("statusCooking").setValue(idd.getHours() + ":" + idd.getMinutes());
+                                        ORDER_REF.child("statusCooking").setValue(String.format("%02d", idd.getHours()) + ":"+ String.format("%02d", idd.getMinutes()));
                                         ORDER_REF.child("statusDelivery").setValue("--:--");
                                         view.findViewById(R.id.state_placed).setEnabled(false);
                                         view.findViewById(R.id.state_confirmed).setEnabled(false);
@@ -242,7 +241,7 @@ public class OrderState extends Fragment {
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.exists()) {
                                         Date idd = Calendar.getInstance().getTime();
-                                        ORDER_REF.child("statusDelivery").setValue(idd.getHours() + ":" + idd.getMinutes());
+                                        ORDER_REF.child("statusDelivery").setValue(String.format("%02d", idd.getHours()) + ":"+ String.format("%02d", idd.getMinutes()));
                                         view.findViewById(R.id.state_placed).setEnabled(false);
                                         view.findViewById(R.id.state_confirmed).setEnabled(false);
                                         view.findViewById(R.id.state_cooking).setEnabled(false);
