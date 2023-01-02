@@ -1,64 +1,123 @@
 package com.stivoo.wagbaadmin;
 
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FilterFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class FilterFragment extends Fragment {
+import com.google.firebase.database.DataSnapshot;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class FilterFragment extends Fragment implements RecyclerViewInterface {
+    OrdersAdapter adapter = new OrdersAdapter(this);
+    ArrayList<OrderModel> orders;
 
-    public FilterFragment() {
-        // Required empty public constructor
-    }
+    public FilterFragment(){
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FilterFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static FilterFragment newInstance(String param1, String param2) {
-        FilterFragment fragment = new FilterFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+        HomeFragmentViewModel homeViewModel = new ViewModelProvider(this).get(HomeFragmentViewModel.class);
+        LiveData<DataSnapshot> liveData = homeViewModel.getOrdersLiveData();
+
+        liveData.observe(this, dataSnapshot -> {
+            if (dataSnapshot != null) {
+                orders = new ArrayList<>();
+                for (DataSnapshot dataSnapshott: dataSnapshot.getChildren()) {
+                    for (DataSnapshot dataSnapshottt : dataSnapshott.getChildren()) {
+                        if (!dataSnapshottt.child("statusDelivery").getValue().equals("--:--")) {
+                            OrderModel x = new OrderModel();
+                            x.setUid(dataSnapshott.getKey().toString());
+                            Order item = new Order();
+                            item.setId((String) dataSnapshottt.child("id").getValue());
+                            item.setOrderDate((String) dataSnapshottt.child("orderDate").getValue());
+                            item.setStatusProcess((String) dataSnapshottt.child("statusProcess").getValue());
+                            item.setStatusConfirm((String) dataSnapshottt.child("statusConfirm").getValue());
+                            item.setStatusCooking((String) dataSnapshottt.child("statusCooking").getValue());
+                            item.setStatusDelivery((String) dataSnapshottt.child("statusDelivery").getValue());
+                            item.setGate((String) dataSnapshottt.child("gate").getValue());
+                            ArrayList<CartItem> ci = new ArrayList<>();
+                            for (DataSnapshot meal : dataSnapshottt.child("meals").getChildren()) {
+                                CartItem ciMeal = new CartItem();
+                                ciMeal.setAdditional_info((String) meal.child("additional_info").getValue());
+                                ciMeal.setDelivery_fee(Float.parseFloat((String.valueOf(meal.child("delivery_fee").getValue()))));
+                                ciMeal.setImg((String) meal.child("img").getValue());
+                                ciMeal.setMeal_name((String) meal.child("meal_name").getValue());
+                                ciMeal.setPrice((String) meal.child("price").getValue());
+                                ciMeal.setQty(Integer.parseInt(((String.valueOf(meal.child("qty").getValue())))));
+                                ciMeal.setRestaurant_name((String) meal.child("restaurant_name").getValue());
+                                ci.add(ciMeal);
+                            }
+                            item.setMeals(ci);
+                            item.setOrderInfo((String) dataSnapshottt.child("orderInfo").getValue());
+                            item.setPeriod((String) dataSnapshottt.child("period").getValue());
+                            item.setOrderTime((String) dataSnapshottt.child("orderTime").getValue());
+                            x.setTimestamp(dataSnapshottt.getKey().toString());
+                            x.setOrderData(item);
+                            orders.add(x);
+                        }
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            orders.sort(new Comparator<OrderModel>() {
+                                public int compare(OrderModel u1, OrderModel u2) {
+                                    if (u1.getOrderData().getId() == u2.getOrderData().getId())
+                                        return 0;
+                                    return Long.parseLong(u1.getOrderData().getId().substring(1)) < Long.parseLong(u2.getOrderData().getId().substring(1)) ? -1 : 1;
+                                }
+                            });
+                        }
+                        Collections.reverse(orders);
+                        adapter.setList(orders);
+                        Log.d("testinggg", orders.toString());
+                    }
+                }
+            }
+        });
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_filter, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        RecyclerView recycler = view.findViewById(R.id.d_recyclerview);
+        recycler.setNestedScrollingEnabled(false);
+        recycler.setAdapter(adapter);
+        recycler.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    @Override
+    public void onViewBtnClick(OrderModel pos) {
+        FragmentManager fragm = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragm.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, new OrderState(pos));
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
     }
 }

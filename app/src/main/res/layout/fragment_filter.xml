@@ -3,13 +3,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FilterFragment">
+    tools:context=".HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Filter" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/delivered_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="6dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="center"
+                android:text="All Delivered Orders"
+                android:textColor="@color/ChineseBlack"
+                android:textSize="20sp"
+                tools:ignore="TextContrastCheck" />
+
+            <View
+                android:id="@+id/horizontal_separator12"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DBDBDB" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/d_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="6dp"
+                tools:listitem="@layout/order_card" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
 
 </FrameLayout>

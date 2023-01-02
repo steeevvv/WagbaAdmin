@@ -13,21 +13,26 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:background="@drawable/featured_restaurant_card_bg"
+        android:elevation="5dp"
         android:paddingBottom="12dp">
 
 
         <TextView
-            android:id="@+id/tv_rest_duration"
+            android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
             android:fontFamily="@font/poppins"
             android:paddingTop="6dp"
             android:text="12:00 (Noon)"
             android:textColor="@color/ChineseBlack_300"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/tv_rest_name2"
-            app:layout_constraintTop_toTopOf="@+id/imageView7"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_delivery_fees"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_gate"
+            app:layout_constraintTop_toTopOf="@+id/tv_delivery_fees"
             tools:ignore="TextContrastCheck" />
 
         <TextView
@@ -39,28 +44,30 @@
             android:paddingTop="6dp"
             android:text="EGP 20.00"
             android:textColor="@color/wagba_main"
-            android:textSize="10sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/circle_img"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
-            app:layout_constraintTop_toBottomOf="@+id/tv_rest_name" />
+            app:layout_constraintEnd_toStartOf="@+id/tv_gate"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="@+id/tv_person_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_person_name" />
 
         <TextView
-            android:id="@+id/tv_delivery_fees2"
+            android:id="@+id/tv_gate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
             android:fontFamily="@font/poppins"
             android:paddingTop="6dp"
             android:text="Gate 3"
             android:textColor="@color/ChineseBlack_500"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView7"
-            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_delivery_fees"
+            app:layout_constraintEnd_toStartOf="@+id/tv_time"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/imageView7"
-            app:layout_constraintTop_toTopOf="@+id/imageView7" />
+            app:layout_constraintStart_toEndOf="@+id/tv_delivery_fees"
+            app:layout_constraintTop_toTopOf="@+id/tv_delivery_fees" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/circle_img"
@@ -75,7 +82,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/restaurant_logo"
+                android:id="@+id/person_photo"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:contentDescription="@string/category_icon_desc"
@@ -85,8 +92,8 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/tv_rest_name"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_person_name"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:fontFamily="@font/poppins_semibold"
@@ -95,6 +102,7 @@
             android:textColor="@color/ChineseBlack"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/tv_delivery_fees"
+            app:layout_constraintEnd_toStartOf="@+id/tv_person_phone"
             app:layout_constraintStart_toEndOf="@+id/circle_img"
             app:layout_constraintTop_toTopOf="@+id/circle_img"
             app:layout_constraintVertical_chainStyle="packed" />
@@ -143,7 +151,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_rest_name6" />
 
         <TextView
-            android:id="@+id/tv_rest_name4"
+            android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
@@ -156,7 +164,7 @@
             app:layout_constraintTop_toTopOf="@+id/tv_rest_name3" />
 
         <TextView
-            android:id="@+id/tv_rest_name7"
+            android:id="@+id/tv_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
@@ -164,18 +172,19 @@
             android:text="#166883123"
             android:textColor="@color/ChineseBlack"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/tv_rest_name4"
+            app:layout_constraintEnd_toEndOf="@+id/tv_date"
             app:layout_constraintHorizontal_bias="0.504"
-            app:layout_constraintStart_toStartOf="@+id/tv_rest_name4"
+            app:layout_constraintStart_toStartOf="@+id/tv_date"
             app:layout_constraintTop_toTopOf="@+id/tv_rest_name6" />
 
         <TextView
-            android:id="@+id/tv_rest_name10"
+            android:id="@+id/tv_info"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
             android:fontFamily="@font/poppins"
+            android:gravity="center"
             android:paddingTop="6dp"
             android:text="Please Call Me when you arrive so that I can know where are your!"
             android:textColor="@color/ChineseBlack"
@@ -186,7 +195,7 @@
             app:layout_constraintTop_toTopOf="@+id/tv_rest_name9" />
 
         <TextView
-            android:id="@+id/tv_rest_name2"
+            android:id="@+id/tv_person_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
@@ -196,46 +205,7 @@
             android:textColor="@color/ChineseBlack"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_rest_name" />
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="wrap_content"
-            android:layout_height="22dp"
-            android:layout_marginTop="6dp"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            app:layout_constraintStart_toStartOf="@+id/tv_rest_name"
-            app:layout_constraintTop_toBottomOf="@+id/tv_rest_name"
-            app:srcCompat="@drawable/ic_delivery"
-            tools:ignore="ImageContrastCheck" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="22dp"
-            android:adjustViewBounds="true"
-            android:paddingTop="4dp"
-            android:paddingRight="3dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toStartOf="@+id/tv_rest_duration"
-            app:layout_constraintTop_toTopOf="@+id/tv_delivery_fees"
-            app:srcCompat="@drawable/ic_clock"
-            tools:ignore="ImageContrastCheck" />
-
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="wrap_content"
-            android:layout_height="22dp"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toStartOf="@+id/tv_delivery_fees2"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@+id/tv_delivery_fees"
-            app:layout_constraintTop_toTopOf="@+id/tv_delivery_fees"
-            app:srcCompat="@drawable/ic_gate"
-            tools:ignore="ImageContrastCheck" />
+            app:layout_constraintTop_toTopOf="@+id/tv_person_name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

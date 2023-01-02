@@ -14,12 +14,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         replaceFragment(new HomeFragment());
-
         binding.navBar.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.Home:
@@ -29,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.Profile:
                     replaceFragment(new ProfileFragment());
                     break;
-                case R.id.Filter:
+                case R.id.Delivered:
                     replaceFragment(new FilterFragment());
                     break;
             }

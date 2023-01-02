@@ -15,7 +15,7 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/cart_textView"
+                android:id="@+id/current_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -34,7 +34,7 @@
                 android:background="#DBDBDB" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/po_recyclerView"
+                android:id="@+id/po_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="6dp"
